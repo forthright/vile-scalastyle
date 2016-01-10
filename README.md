@@ -1,4 +1,4 @@
-# vile-scalastyle
+# vile-scalastyle [![Circle CI](https://circleci.com/gh/brentlintner/vile-scalastyle.svg?style=svg&circle-token=004bffac81b98d18e7d2af91c9cf38987de69a0d)](https://circleci.com/gh/brentlintner/vile-scalastyle)
 
 A [vile](http://github.com/brentlintner/vile)
 plugin for [scalastyle](http://www.scalastyle.org).
