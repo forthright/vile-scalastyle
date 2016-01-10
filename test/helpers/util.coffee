@@ -1,9 +1,21 @@
 Promise = require "bluebird"
+mimus = require "mimus"
+fs = require "fs"
 scalastyle_xml = require "./../fixtures/scalastyle-xml"
 
+Promise.promisifyAll fs
+
 setup = (vile) ->
+  mimus.stub(fs, "readFileAsync").returns(
+    new Promise((resolve, reject) -> resolve(scalastyle_xml))
+  )
+
+  mimus.stub(fs, "unlinkAsync").returns(
+    new Promise((resolve, reject) -> resolve())
+  )
+
   vile.spawn.returns new Promise (resolve) ->
-    resolve(scalastyle_xml)
+    resolve("potential gibberish")
 
 issues = [
   {

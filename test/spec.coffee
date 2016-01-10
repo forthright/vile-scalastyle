@@ -1,4 +1,6 @@
+fs = require "fs"
 mimus = require "mimus"
+Promise = require "bluebird"
 scalastyle = mimus.require "./../lib", __dirname, []
 chai = require "./helpers/sinon_chai"
 util = require "./helpers/util"
@@ -7,8 +9,11 @@ log = mimus.get scalastyle, "log"
 xml2js = mimus.get scalastyle, "xml"
 expect = chai.expect
 
+Promise.promisifyAll fs
+
 SCALASTYLE_CONFIG = "scalastyle_config.xml"
-DEFAULT_ARGS = [ "." ]
+SCALASTYLE_REPORT = "./vile-scalastyle-report.xml"
+DEFAULT_ARGS = [ "-q", "true", "--xmlOutput", SCALASTYLE_REPORT, "." ]
 
 # TODO: write integration tests for spawn -> cli
 # TODO: don't use setTimeout everywhere (for proper exception throwing)
@@ -19,7 +24,7 @@ expect_to_set_args = (done, spawn_args, plugin_data) ->
     .should.be.fulfilled.notify ->
       setTimeout ->
         vile.spawn.should.have.been
-          .calledWith "scalastyle", spawn_args || { args: DEFAULT_ARGS }
+          .calledWith "scalastyle", spawn_args
           done()
 
 describe "scalastyle", ->
@@ -37,14 +42,38 @@ describe "scalastyle", ->
         .should.eventually.eql util.issues
 
     it "handles an empty response", ->
-      vile.spawn.reset()
-      vile.spawn.returns new Promise (resolve) -> resolve ""
+      fs.readFileAsync.reset()
+      fs.readFileAsync.returns new Promise (resolve) -> resolve ""
 
       scalastyle
         .punish {}
         .should.eventually.eql []
 
-    describe "when there xml parse error", ->
+    it "sets the xml output file option on by default", (done) ->
+      expect_to_set_args(
+        done,
+        { args: ["-q", "true", "--xmlOutput", SCALASTYLE_REPORT, "."] }
+      )
+
+    it "reads the report file", (done) ->
+      scalastyle
+        .punish {}
+        .should.be.fulfilled.notify ->
+          setTimeout ->
+            fs.readFileAsync.should.have.been
+              .calledWith SCALASTYLE_REPORT
+            done()
+
+    it "removes the report file", (done) ->
+      scalastyle
+        .punish {}
+        .should.be.fulfilled.notify ->
+          setTimeout ->
+            fs.unlinkAsync.should.have.been
+              .calledWith SCALASTYLE_REPORT
+            done()
+
+    describe "when there is an xml parse error", ->
       error = new Error "cli call had an error"
 
       beforeEach ->
@@ -67,7 +96,7 @@ describe "scalastyle", ->
         it "sets the related option", (done) ->
           expect_to_set_args(
             done,
-            { args: ["a/**/*.scala"] },
+            { args: [ "-q", "true", "--xmlOutput", SCALASTYLE_REPORT, "a/**/*.scala" ] },
             { config: sources: "a/**/*.scala" }
           )
 
@@ -75,7 +104,13 @@ describe "scalastyle", ->
         it "sets the related option", (done) ->
           expect_to_set_args(
             done,
-            { args: ["a/*.scala", "b/*.scala"] },
+            {
+              args: [
+                "-q", "true",
+                "--xmlOutput", SCALASTYLE_REPORT,
+                "a/*.scala", "b/*.scala"
+              ]
+            },
             { config: sources: ["a/*.scala", "b/*.scala"] }
           )
 
@@ -83,7 +118,13 @@ describe "scalastyle", ->
         it "sets the related option to all files", (done) ->
           expect_to_set_args(
             done,
-            { args: [ "." ] }
+            {
+              args: [
+                "-q", "true",
+                "--xmlOutput", SCALASTYLE_REPORT,
+                "."
+              ]
+            }
           )
 
     describe "config file path", ->
@@ -91,13 +132,27 @@ describe "scalastyle", ->
         it "sets the related option", (done) ->
           expect_to_set_args(
             done,
-            { args: ["-c", SCALASTYLE_CONFIG].concat DEFAULT_ARGS },
+            {
+              args: [
+                "-q", "true",
+                "--xmlOutput", SCALASTYLE_REPORT,
+                "-c", SCALASTYLE_CONFIG,
+                "."
+              ]
+            },
             { config: path: SCALASTYLE_CONFIG }
           )
 
         it "sets the related option before any sources", (done) ->
           expect_to_set_args(
             done,
-            { args: ["-c", SCALASTYLE_CONFIG, "a", "b"] },
+            {
+              args: [
+                "-q", "true",
+                "--xmlOutput", SCALASTYLE_REPORT,
+                "-c", SCALASTYLE_CONFIG,
+                "a", "b"
+              ]
+            },
             { config: path: SCALASTYLE_CONFIG, sources: ["a", "b"] }
           )

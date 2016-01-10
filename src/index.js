@@ -1,13 +1,16 @@
 let path = require("path")
+let fs = require("fs")
 let Promise = require("bluebird")
 let _ = require("lodash")
 let xml = require("xml2js")
 let vile = require("@brentlintner/vile")
 let log = vile.logger.create("scalastyle")
 
+Promise.promisifyAll(fs)
 // TODO: break up this into smaller modules
 
 const SCALASTYLE = "scalastyle"
+const SCALASTYLE_REPORT = "./vile-scalastyle-report.xml"
 const ALL_FILES = "."
 
 let relative_path = (file) =>
@@ -21,6 +24,14 @@ let xml_to_json = (xml_string) =>
       resolve(json)
     })
   })
+
+let remove_report = () =>
+  fs.unlinkAsync(SCALASTYLE_REPORT)
+
+let read_report = () =>
+  fs.readFileAsync(SCALASTYLE_REPORT)
+    .then(xml_to_json)
+    .then((report) => remove_report().then(() => report))
 
 let set_sources = (data, opts) => {
   let sources = _.get(data, "config.sources", ALL_FILES)
@@ -39,7 +50,11 @@ let set_config_path = (data, opts) => {
 }
 
 let scalastyle_args = (data) => {
-  let args = []
+  let args = [
+    "-q", "true",
+    "--xmlOutput",
+    SCALASTYLE_REPORT
+  ]
   set_config_path(data, args)
   set_sources(data, args)
   return args
@@ -48,10 +63,9 @@ let scalastyle_args = (data) => {
 let scalastyle = (data) =>
   vile
     .spawn(SCALASTYLE, { args: scalastyle_args(data) })
-    .then(xml_to_json)
+    .then(read_report)
     .then((scalastyle_result) =>
-      _.get(scalastyle_result, "checkstyle.file", [])
-     )
+      _.get(scalastyle_result, "checkstyle.file", []))
 
 let issue_type = (error) =>
   _.get(error, "$.severity") == "warning" ? vile.WARNING : vile.ERROR
