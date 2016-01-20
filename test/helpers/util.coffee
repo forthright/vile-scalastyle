@@ -19,39 +19,45 @@ setup = (vile) ->
 
 issues = [
   {
-    file: "test.scala",
-    msg: "Header does not match expected text",
-    type: "warn",
-    where: { start: { line: 1 }, end: {} },
-    data: {}
+    path: "test.scala",
+    message: "Header does not match expected text",
+    title: "Header does not match expected text",
+    type: "style",
+    signature: "scalastyle::org.scalastyle.file.HeaderMatchesChecker",
+    where: { start: { line: 1 } }
   }
   {
-    file: "test.scala",
-    msg: "Regular expression matched 'println'",
-    type: "warn",
-    where: { start: { line: 3, character: 36}, end: {} },
-    data: {}
+    path: "test.scala",
+    title: "Regular expression matched 'println'",
+    message: "Regular expression matched 'println'",
+    type: "style",
+    signature: "scalastyle::org.scalastyle.file.RegexChecker",
+    where: { start: { line: 3, character: 36} }
   }
   {
-    file: "test.scala",
-    msg: "Regular expression matched 'println'",
-    type: "warn",
-    where: { start: { line: 14, character: 23}, end: {} },
-    data: {}
+    path: "test.scala",
+    title: "Regular expression matched 'println'",
+    message: "Regular expression matched 'println'",
+    type: "style",
+    signature: "scalastyle::org.scalastyle.file.RegexChecker",
+    where: { start: { line: 14, character: 23} }
   }
   {
-    file: "test.scala",
-    msg: "Public method must have explicit type",
+    path: "test.scala",
+    title: "Public method must have explicit type",
+    message: "Public method must have explicit type",
     type: "error",
-    where: { start: { line: 2, character: 6}, end: {} },
-    data: {}
+    signature: "scalastyle::org.scalastyle.scalariform." +
+                "PublicMethodsHaveTypeChecker",
+    where: { start: { line: 2, character: 6} }
   }
   {
-    file: "some/folder/test_two.scala",
-    msg: "Some message",
+    path: "some/folder/test_two.scala",
+    title: "Some message",
+    message: "Some message",
+    signature: "scalastyle::org.scalastyle.file.SomeChecker",
     type: "error",
-    where: { start: { }, end: {} },
-    data: {}
+    where: { start: undefined }
   }
 ]
 

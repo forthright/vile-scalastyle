@@ -68,7 +68,7 @@ let scalastyle = (data) =>
       _.get(scalastyle_result, "checkstyle.file", []))
 
 let issue_type = (error) =>
-  _.get(error, "$.severity") == "warning" ? vile.WARNING : vile.ERROR
+  _.get(error, "$.severity") == "warning" ? vile.STYL : vile.ERR
 
 let start_line = (error) => {
   if (_.has(error, "$.line")) {
@@ -89,12 +89,14 @@ let into_vile_issues = (scalastyle_files) =>
   _.flatten(
     _.map(scalastyle_files, (file) =>
       _.map(file.error, (error) =>
-        vile.issue(
-          issue_type(error),
-          relative_path(file.$.name),
-          message(error),
-          start_line(error)
-        )
+        vile.issue({
+          type: issue_type(error),
+          path: relative_path(_.get(file, "$.name")),
+          title: message(error),
+          message: message(error),
+          signature: `scalastyle::${_.get(error, "$.source")}`,
+          where: { start: start_line(error) }
+        })
       )
     )
   )

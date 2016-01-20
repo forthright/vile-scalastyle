@@ -5,8 +5,7 @@
   "main": "lib/index.js",
   "files": [
     "bin",
-    "lib",
-    "src"
+    "lib"
   ],
   "scripts": {
     "compile": "babel -d lib -m common src",
@@ -22,7 +21,7 @@
     "scalastyle"
   ],
   "dependencies": {
-    "@brentlintner/vile": "^0.4.1",
+    "@brentlintner/vile": "^0.5.3",
     "bluebird": "^3.1.1",
     "lodash": "^3.10.1",
     "xml2js": "^0.4.15"
