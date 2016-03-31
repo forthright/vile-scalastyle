@@ -3,16 +3,18 @@ vile:
       ".build",
       "coverage",
       "node_modules",
-      "test/fixtures/phpmd-xml.coffee",
       "lib",
       "tags",
       ".test",
       ".ctags",
+      ".git",
       "circle.yml",
       ".editorconfig",
       ".eslintignore",
       ".eslintrc",
       ".fs-lint",
+      ".jshintrc",
+      ".jshintignore",
       ".gitignore",
       ".npmrc",
       "README.md",
@@ -20,17 +22,13 @@ vile:
       ".vilerc"
     ]
 
-scalastyle:
-  config:
-    path: test/fixtures/scalastyle_config.xml
-
 coverage:
   config:
     path: coverage/lcov.info
 
 length:
   config:
-    file: 120
+    file: 250
     line: 80
 
 depcheck:
@@ -40,26 +38,28 @@ depcheck:
     ignore_deps: [ "@forthright/*" ]
 
 license:
-  config: [
-      "MPL-2.0",
+  config:
+    allowed: [
       "MIT",
-      "MIT*",
+      "MIT License",
+      "MIT AND JSON",
       "The MIT License",
+      "MPL",
+      "MPL-2.0",
       "Public Domain",
       "PSF",
       "BSD",
-      "BSD*",
       "BSD-3-Clause",
       "BSD-2-Clause",
-      "BSD-3-Clause AND MIT",
+      "Unlicense",
       "Artistic-2.0",
-      "(BSD-2-Clause OR MIT OR Apache-2.0)",
       "ISC",
       "WTFPL",
-      "(BSD-2-Clause OR WTFPL)",
-      "Apache*",
-      "Apache License 2.0",
-      "Apache 2.0",
+      "Apache",
       "Apache-2.0",
-      "WTFPL"
+      "Apache 2.0",
+      "Apache*",
+      "Apachev2",
+      "WTFPL",
+      "GPL"
     ]
