@@ -1,6 +1,6 @@
 # vile-scalastyle git@github.com:forthright/vile.git
 
-[![score-badge](https://vile.io/brentlintner/vile-scalastyle/badges/score?token=WaCk-zxYnWH7kntDRAiA)](https://vile.io/brentlintner/vile-scalastyle) [![security-badge](https://vile.io/brentlintner/vile-scalastyle/badges/security?token=WaCk-zxYnWH7kntDRAiA)](https://vile.io/brentlintner/vile-scalastyle) [![coverage-badge](https://vile.io/brentlintner/vile-scalastyle/badges/coverage?token=WaCk-zxYnWH7kntDRAiA)](https://vile.io/brentlintner/vile-scalastyle) [![dependency-badge](https://vile.io/brentlintner/vile-scalastyle/badges/dependency?token=WaCk-zxYnWH7kntDRAiA)](https://vile.io/brentlintner/vile-scalastyle)
+[![score-badge](https://vile.io/brentlintner/vile-scalastyle/badges/score?token=uFywUmzZfbg6UboLzn6R)](https://vile.io/brentlintner/vile-scalastyle) [![security-badge](https://vile.io/brentlintner/vile-scalastyle/badges/security?token=uFywUmzZfbg6UboLzn6R)](https://vile.io/brentlintner/vile-scalastyle) [![coverage-badge](https://vile.io/brentlintner/vile-scalastyle/badges/coverage?token=uFywUmzZfbg6UboLzn6R)](https://vile.io/brentlintner/vile-scalastyle) [![dependency-badge](https://vile.io/brentlintner/vile-scalastyle/badges/dependency?token=uFywUmzZfbg6UboLzn6R)](https://vile.io/brentlintner/vile-scalastyle)
 
 A [vile](https://vile.io) plugin for [scalastyle](http://www.scalastyle.org).
 
