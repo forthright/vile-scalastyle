@@ -1,4 +1,4 @@
-# vile-scalastyle git@github.com:forthright/vile.git
+# vile-scalastyle [![CircleCI](https://circleci.com/gh/forthright/vile-scalastyle.svg?style=svg&circle-token=004bffac81b98d18e7d2af91c9cf38987de69a0d)](https://circleci.com/gh/forthright/vile-scalastyle)
 
 [![score-badge](https://vile.io/brentlintner/vile-scalastyle/badges/score?token=uFywUmzZfbg6UboLzn6R)](https://vile.io/brentlintner/vile-scalastyle) [![security-badge](https://vile.io/brentlintner/vile-scalastyle/badges/security?token=uFywUmzZfbg6UboLzn6R)](https://vile.io/brentlintner/vile-scalastyle) [![coverage-badge](https://vile.io/brentlintner/vile-scalastyle/badges/coverage?token=uFywUmzZfbg6UboLzn6R)](https://vile.io/brentlintner/vile-scalastyle) [![dependency-badge](https://vile.io/brentlintner/vile-scalastyle/badges/dependency?token=uFywUmzZfbg6UboLzn6R)](https://vile.io/brentlintner/vile-scalastyle)
 
