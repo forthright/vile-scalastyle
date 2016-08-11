@@ -26,6 +26,7 @@ expect_to_set_args = (done, spawn_args, plugin_data) ->
         vile.spawn.should.have.been
           .calledWith "scalastyle", spawn_args
           done()
+  return
 
 describe "scalastyle", ->
   afterEach mimus.reset
@@ -63,6 +64,7 @@ describe "scalastyle", ->
             fs.readFileAsync.should.have.been
               .calledWith SCALASTYLE_REPORT
             done()
+      return
 
     it "removes the report file", (done) ->
       scalastyle
@@ -72,6 +74,7 @@ describe "scalastyle", ->
             fs.unlinkAsync.should.have.been
               .calledWith SCALASTYLE_REPORT
             done()
+      return
 
     describe "when there is an xml parse error", ->
       error = new Error "cli call had an error"
@@ -90,6 +93,7 @@ describe "scalastyle", ->
             setTimeout ->
               log.error.should.have.been.calledWith error
               done()
+        return
 
     describe "sources to operate on", ->
       describe "when given a single path", ->
