@@ -1,6 +1,7 @@
 vile:
   ignore:
     - appveyor.yml
+    - test/fixtures
     - coverage
     - coffeelint.json
     - .ackrc
