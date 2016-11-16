@@ -15,7 +15,11 @@ setup = (vile) ->
   )
 
   vile.spawn.returns new Promise (resolve) ->
-    resolve("potential gibberish")
+    resolve({
+      code: 0
+      stdout: "potential gibberish"
+      stderr: ""
+    })
 
 issues = [
   {
