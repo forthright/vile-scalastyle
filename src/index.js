@@ -3,7 +3,7 @@ let fs = require("fs")
 let Promise = require("bluebird")
 let _ = require("lodash")
 let xml = require("xml2js")
-let vile = require("@forthright/vile")
+let vile = require("vile")
 let log = vile.logger.create("scalastyle")
 
 Promise.promisifyAll(fs)
