@@ -1,6 +1,6 @@
 {
   "name": "vile-scalastyle",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Identify common style and maintainability issues in your Scala code.",
   "main": "lib/index.js",
   "files": [
