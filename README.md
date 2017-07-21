@@ -1,19 +1,12 @@
 # vile-scalastyle [![CircleCI](https://circleci.com/gh/forthright/vile-scalastyle.svg?style=shield&circle-token=004bffac81b98d18e7d2af91c9cf38987de69a0d)](https://circleci.com/gh/forthright/vile-scalastyle) [![score-badge](https://vile.io/api/v0/projects/vile-scalastyle/badges/score?token=USryyHar5xQs7cBjNUdZ)](https://vile.io/~brentlintner/vile-scalastyle) [![security-badge](https://vile.io/api/v0/projects/vile-scalastyle/badges/security?token=USryyHar5xQs7cBjNUdZ)](https://vile.io/~brentlintner/vile-scalastyle) [![coverage-badge](https://vile.io/api/v0/projects/vile-scalastyle/badges/coverage?token=USryyHar5xQs7cBjNUdZ)](https://vile.io/~brentlintner/vile-scalastyle) [![dependency-badge](https://vile.io/api/v0/projects/vile-scalastyle/badges/dependency?token=USryyHar5xQs7cBjNUdZ)](https://vile.io/~brentlintner/vile-scalastyle)
 
-A [vile](https://vile.io) plugin for [scalastyle](http://www.scalastyle.org).
-
-**NOTICE**
-
-This project is not actively maintained. If you want to
-help maintain the project, or if you have a better
-alternative to switch to, please open an issue and ask!
+A [Vile](https://vile.io) plugin for identifying common style and
+maintainability issues in your Scala code (via [Scalastyle](http://www.scalastyle.org)).
 
 ## Requirements
 
-- [nodejs](http://nodejs.org)
-- [npm](http://npmjs.org)
-- [scala](http://php.net)
-- [scalastyle](http://www.scalastyle.org)
+- [Node.js](http://nodejs.org)
+- [Scalastyle](http://www.scalastyle.org)
 
 ## Installation
 
@@ -30,7 +23,7 @@ scalastyle:
 
 ## Versioning
 
-This project ascribes to [semantic versioning](http://semver.org).
+This project uses [Semver](http://semver.org).
 
 ## Licensing
 
@@ -57,13 +50,7 @@ Even if you are uncomfortable with code, an issue or question is welcome.
 
 ### Code Of Conduct
 
-This project ascribes to [contributor-covenant.org](http://contributor-covenant.org).
-
 By participating in this project you agree to our [Code of Conduct](CODE_OF_CONDUCT.md).
-
-### Maintainers
-
-- Nothing to see here...
 
 ## Architecture
 
@@ -72,10 +59,10 @@ an XML CLI output that is currently used until a more ideal
 option is implemented.
 
 - `bin` houses any shell based scripts
-- `src` is es6+ syntax compiled with [babel](https://babeljs.io)
+- `src` is es6+ syntax compiled with [Babel](https://babeljs.io)
 - `lib` generated js library
 
-## Hacking
+## Developing
 
     cd vile-scalastyle
     npm install

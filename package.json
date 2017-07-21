@@ -1,7 +1,7 @@
 {
   "name": "vile-scalastyle",
   "version": "0.3.2",
-  "description": "A vile plugin for scalastyle",
+  "description": "Identify common style and maintainability issues in your Scala code.",
   "main": "lib/index.js",
   "files": [
     "lib",
